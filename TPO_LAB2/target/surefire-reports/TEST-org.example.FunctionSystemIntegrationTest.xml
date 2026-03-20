@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.example.FunctionSystemIntegrationTest" time="1.067" tests="18" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1251"/>
+    <property name="java.class.path" value="C:\Users\grigo\study\ITMO-TPO\TPO_LAB2\target\test-classes;C:\Users\grigo\study\ITMO-TPO\TPO_LAB2\target\classes;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\grigo\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\grigo\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\grigo\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\grigo\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\grigo\.m2\repository\org\mockito\mockito-core\5.23.0\mockito-core-5.23.0.jar;C:\Users\grigo\.m2\repository\net\bytebuddy\byte-buddy\1.17.7\byte-buddy-1.17.7.jar;C:\Users\grigo\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.7\byte-buddy-agent-1.17.7.jar;C:\Users\grigo\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Moscow"/>
+    <property name="user.country.format" value="US"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="RU"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\OpenJDK\jdk-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\grigo\AppData\Local\Temp\surefire13264562237776769196\surefirebooter-20260319174855501_3.jar C:\Users\grigo\AppData\Local\Temp\surefire13264562237776769196 2026-03-19T17-48-55_361-jvmRun1 surefire-20260319174855501_1tmp surefire_0-20260319174855501_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\grigo\study\ITMO-TPO\TPO_LAB2\target\test-classes;C:\Users\grigo\study\ITMO-TPO\TPO_LAB2\target\classes;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\grigo\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\grigo\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\grigo\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\grigo\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\grigo\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\grigo\.m2\repository\org\mockito\mockito-core\5.23.0\mockito-core-5.23.0.jar;C:\Users\grigo\.m2\repository\net\bytebuddy\byte-buddy\1.17.7\byte-buddy-1.17.7.jar;C:\Users\grigo\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.7\byte-buddy-agent-1.17.7.jar;C:\Users\grigo\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\grigo"/>
+    <property name="user.language" value="ru"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-09-19"/>
+    <property name="java.home" value="C:\Program Files\OpenJDK\jdk-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\grigo\study\ITMO-TPO\TPO_LAB2"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\grigo\AppData\Local\Temp\surefire13264562237776769196\surefirebooter-20260319174855501_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21+35-2513"/>
+    <property name="user.name" value="grigo"/>
+    <property name="stdout.encoding" value="Cp1251"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\grigo\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\grigo\AppData\Local\Temp\"/>
+    <property name="java.version" value="21"/>
+    <property name="user.dir" value="C:\Users\grigo\study\ITMO-TPO\TPO_LAB2"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.language.format" value="en"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1251"/>
+    <property name="java.library.path" value="C:\Program Files\OpenJDK\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\grigo\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\grigo\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Users\grigo\AppData\Local\Programs\Microsoft VS Code;C:\Program Files\PostgreSQL\16\bin;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\OpenJDK\jdk-21\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\grigo\visualvm_22\bin;;C:\ProgramData\chocolatey\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.12\bin;C:\Program Files\OpenJDK\jdk-21\bin;C:\Users\grigo\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\grigo\AppData\Local\Programs\Python\Python311\;C:\Users\grigo\AppData\Local\Microsoft\WindowsApps;C:\PyCharm Community Edition 2022.3\bin;;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1.2\bin;;C:\Program Files\JetBrains\CLion 2023.3.4\bin;;D:\LaTex\miktex\bin\x64\;C:\Program Files\JetBrains\IntelliJ IDEA 2024.2.4\bin;;C:\Program Files\JetBrains\DataGrip 2023.3.4\bin;;C:\Program Files\JetBrains\JetBrains Rider 2024.1.4\bin;;C:\Users\grigo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\apache-ant-1.10.15\bin;C:\Users\grigo\.docker\bin;;C:\ghcup\bin;C:\intelFPGA\20.1\modelsim_ase\win32aloem;C:\Users\grigo\AppData\Local\Programs\Antigravity\bin;C:\Users\grigo\AppData\Local\Coursier\data\bin;c:\Users\grigo\.vscode\extensions\vscjava.vscode-java-debug-0.58.5\bundled\scripts\noConfigScripts;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1251"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21+35-2513"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="cosKnownValues" classname="org.example.FunctionSystemIntegrationTest" time="0.031"/>
+  <testcase name="logSystemThrowsNearSingularity" classname="org.example.FunctionSystemIntegrationTest" time="0.005"/>
+  <testcase name="testFunctionSystemDelegatesToTrigSystemForNegative" classname="org.example.FunctionSystemIntegrationTest" time="0.94">
+    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\grigo\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.7\byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="logSystemAtTwo" classname="org.example.FunctionSystemIntegrationTest" time="0.004"/>
+  <testcase name="testFunctionSystemPropagatesExceptionFromLogSystem" classname="org.example.FunctionSystemIntegrationTest" time="0.008"/>
+  <testcase name="csvOutputCreatesFile" classname="org.example.FunctionSystemIntegrationTest" time="0.009"/>
+  <testcase name="sinKnownValues" classname="org.example.FunctionSystemIntegrationTest" time="0.002"/>
+  <testcase name="trigSystemAtMinusOne" classname="org.example.FunctionSystemIntegrationTest" time="0.001"/>
+  <testcase name="logSystemThrowsAtLog10Zero" classname="org.example.FunctionSystemIntegrationTest" time="0.002"/>
+  <testcase name="lnThrowsForNonPositive" classname="org.example.FunctionSystemIntegrationTest" time="0.003"/>
+  <testcase name="testFunctionSystemPropagatesExceptionFromTrigSystem" classname="org.example.FunctionSystemIntegrationTest" time="0.005"/>
+  <testcase name="logSystemThrowsForNonPositive" classname="org.example.FunctionSystemIntegrationTest" time="0.002"/>
+  <testcase name="testFunctionSystemDelegatesForZeroToTrigSystem" classname="org.example.FunctionSystemIntegrationTest" time="0.003"/>
+  <testcase name="trigSystemThrowsAtSingularities" classname="org.example.FunctionSystemIntegrationTest" time="0.002"/>
+  <testcase name="lnKnownValues" classname="org.example.FunctionSystemIntegrationTest" time="0.001"/>
+  <testcase name="testFunctionSystemDelegatesToLogSystemForPositive" classname="org.example.FunctionSystemIntegrationTest" time="0.003"/>
+  <testcase name="systemUsesCorrectBranchForPositive" classname="org.example.FunctionSystemIntegrationTest" time="0.001"/>
+  <testcase name="systemUsesCorrectBranchForNegative" classname="org.example.FunctionSystemIntegrationTest" time="0.001"/>
+</testsuite>
