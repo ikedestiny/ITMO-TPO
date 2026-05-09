@@ -1,40 +1,104 @@
 package se.ifmo.utils;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class BrowserFactory {
-    private static Playwright playwright;
-    private static Browser browser;
-    private static Page page;
+import java.time.Duration;
+import java.util.Locale;
 
-    public static Page createPage() {
-        String browserName = System.getProperty("browser", "chromium").toLowerCase();
-        playwright = Playwright.create();
-        BrowserType.LaunchOptions options = new BrowserType.LaunchOptions().setHeadless(false);
-        switch (browserName) {
-            case "firefox":
-                browser = playwright.firefox().launch(options);
-                break;
-            case "webkit":
-                browser = playwright.webkit().launch(options);
-                break;
-            default:
-                browser = playwright.chromium().launch(options);
-        }
+public final class BrowserFactory {
+    private static final Duration PAGE_LOAD_TIMEOUT = Duration.ofSeconds(45);
+    private static final Duration IMPLICIT_TIMEOUT = Duration.ofSeconds(2);
 
-        page = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(1024, 768)
-                .setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")).newPage();
-
-        return page;
+    private BrowserFactory() {
     }
 
-    public static void close() {
-        if (page != null) page.close();
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
+    public static WebDriver createDriver(String browserName) {
+        String normalizedName = browserName == null ? "chrome" : browserName.toLowerCase(Locale.ROOT).trim();
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+
+        WebDriver driver = switch (normalizedName) {
+            case "firefox" -> createFirefoxDriver(headless);
+            case "edge", "msedge" -> createEdgeDriver(headless);
+            case "chrome" -> createChromeDriver(headless);
+            default -> throw new IllegalArgumentException("Unsupported browser: " + browserName);
+        };
+
+        driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT);
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_TIMEOUT);
+        driver.manage().window().setSize(new Dimension(1366, 900));
+        return driver;
+    }
+
+    private static WebDriver createChromeDriver(boolean headless) {
+        setupDriverManagerIfEnabled("chrome");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--lang=ru-RU");
+        String binary = System.getProperty("chrome.binary");
+        if (binary != null && !binary.isBlank()) {
+            options.setBinary(binary);
+        }
+        if (headless) {
+            options.addArguments("--headless=new");
+            options.addArguments("--window-size=1366,900");
+        }
+        return new ChromeDriver(options);
+    }
+
+    private static WebDriver createEdgeDriver(boolean headless) {
+        setupDriverManagerIfEnabled("edge");
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--disable-notifications");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--lang=ru-RU");
+        String binary = System.getProperty("edge.binary");
+        if (binary != null && !binary.isBlank()) {
+            options.setBinary(binary);
+        }
+        if (headless) {
+            options.addArguments("--headless=new");
+            options.addArguments("--window-size=1366,900");
+        }
+        return new EdgeDriver(options);
+    }
+
+    private static WebDriver createFirefoxDriver(boolean headless) {
+        setupDriverManagerIfEnabled("firefox");
+        FirefoxOptions options = new FirefoxOptions();
+        options.addPreference("dom.webnotifications.enabled", false);
+        options.addPreference("intl.accept_languages", "ru-RU,ru");
+        String binary = System.getProperty("firefox.binary");
+        if (binary != null && !binary.isBlank()) {
+            options.setBinary(binary);
+        }
+        if (headless) {
+            options.addArguments("-headless");
+            options.addArguments("--width=1366");
+            options.addArguments("--height=900");
+        }
+        return new FirefoxDriver(options);
+    }
+
+    private static void setupDriverManagerIfEnabled(String browserName) {
+        boolean useWebDriverManager = Boolean.parseBoolean(System.getProperty("webdriver.manager", "true"));
+        if (!useWebDriverManager) {
+            return;
+        }
+
+        switch (browserName) {
+            case "chrome" -> WebDriverManager.chromedriver().setup();
+            case "edge" -> WebDriverManager.edgedriver().setup();
+            case "firefox" -> WebDriverManager.firefoxdriver().setup();
+            default -> throw new IllegalArgumentException("Unsupported browser: " + browserName);
+        }
     }
 }
