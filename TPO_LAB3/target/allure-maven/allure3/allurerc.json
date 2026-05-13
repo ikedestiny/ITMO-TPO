@@ -1,0 +1,13 @@
+{
+  "historyPath" : "C:\\Users\\Hysteria\\ITMO-TPO\\TPO_LAB3\\.allure\\history\\report\\history.jsonl",
+  "appendHistory" : true,
+  "name" : "Allure",
+  "output" : "C:\\Users\\Hysteria\\ITMO-TPO\\TPO_LAB3\\target\\site\\allure-maven-plugin",
+  "plugins" : {
+    "awesome" : {
+      "options" : {
+        "singleFile" : false
+      }
+    }
+  }
+}

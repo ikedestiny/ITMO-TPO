@@ -1,0 +1,1 @@
+{"id":"963dcab1d28187e68732bc9936dcd5c5","fullName":"TicketPurchaseTest.guestFillsTrainTicketPurchaseFlowUntilPayment","name":"Гость выбирает поезд, место/тариф, вводит пассажира, промокод и способ оплаты Покупка ж/д билета до оплаты: firefox","status":"passed","testResultsByEnv":{"default":"db41a896620e384f952a35be0e317b6a"}}

@@ -1,0 +1,25 @@
+<html lang="ru"><head>
+  <meta charset="utf-8">
+  <title>tutu.ru functional fixture</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; line-height: 1.4; }
+    input, button { display: block; margin: 8px 0; padding: 8px; min-width: 220px; }
+    section { margin-top: 16px; }
+  </style>
+</head>
+<body data-fixture="tutu">
+<h1>Бронирование жилья</h1>
+<form aria-label="Бронирование жилья">
+  <label>Город <input name="city" placeholder="Город или отель"></label>
+  <label>Начало <input name="fromDate" placeholder="Заезд"></label>
+  <label>Окончание <input name="toDate" placeholder="Выезд"></label>
+  <button type="button">Найти</button>
+</form>
+<section id="hotelResults">
+  <h2>Бронирование жилья</h2>
+  <p>Найдены отели и варианты жилья.</p>
+  <button type="button">Забронировать</button>
+</section>
+
+
+</body></html>

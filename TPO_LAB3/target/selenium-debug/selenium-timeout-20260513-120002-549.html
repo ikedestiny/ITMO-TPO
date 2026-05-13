@@ -1,0 +1,32 @@
+<html lang="ru"><head>
+  <meta charset="utf-8">
+  <title>tutu.ru functional fixture</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; line-height: 1.4; }
+    input, button { display: block; margin: 8px 0; padding: 8px; min-width: 220px; }
+    section { margin-top: 16px; }
+  </style>
+</head>
+<body data-fixture="tutu">
+<h1>Туту тестовый контур</h1>
+<button type="button">Войти</button>
+<section aria-label="Авторизация">
+  <input name="login" type="email" placeholder="телефон или email">
+  <input name="password" type="password" placeholder="пароль">
+  <button type="button">Продолжить</button>
+  <span>Личный кабинет</span><span>Заказы</span><span>Профиль</span>
+</section>
+<form aria-label="Поиск маршрута">
+  <label>Откуда <input name="from" placeholder="Откуда" autocomplete="origin"></label>
+  <label>Куда <input name="to" placeholder="Куда" autocomplete="destination"></label>
+  <label>Дата <input name="date" placeholder="Дата"></label>
+  <button type="button">Найти билеты</button>
+</form>
+<section id="suburbanResults">
+  <h2>Расписание электричек</h2>
+  <p>Найден билет на электричку и пригородный поезд.</p>
+  <button type="button">Купить билет</button>
+</section>
+
+
+</body></html>
