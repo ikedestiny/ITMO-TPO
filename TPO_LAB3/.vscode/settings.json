@@ -1,0 +1,41 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.test.defaultConfig": "Firefox and Chrome WebDriver",
+    "java.test.config": [
+        {
+            "name": "Firefox WebDriver",
+            "workingDirectory": "${workspaceFolder}",
+            "vmArgs": [
+                "-Dbrowsers=firefox",
+                "-Dheadless=true",
+                "-Dwebdriver.manager=false",
+                "-Dwebdriver.gecko.driver=C:\\Users\\Hysteria\\Downloads\\geckodriver-v0.36.0-win64\\geckodriver.exe",
+                "-Dfirefox.binary=C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+            ]
+        },
+        {
+            "name": "Chrome WebDriver",
+            "workingDirectory": "${workspaceFolder}",
+            "vmArgs": [
+                "-Dbrowsers=chrome",
+                "-Dheadless=true",
+                "-Dwebdriver.manager=false",
+                "-Dwebdriver.chrome.driver=C:\\Users\\Hysteria\\.cache\\selenium\\chromedriver\\win64\\148.0.7778.167\\chromedriver.exe",
+                "-Dchrome.binary=C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+            ]
+        },
+        {
+            "name": "Firefox and Chrome WebDriver",
+            "workingDirectory": "${workspaceFolder}",
+            "vmArgs": [
+                "-Dbrowsers=firefox,chrome",
+                "-Dheadless=true",
+                "-Dwebdriver.manager=false",
+                "-Dwebdriver.gecko.driver=C:\\Users\\Hysteria\\Downloads\\geckodriver-v0.36.0-win64\\geckodriver.exe",
+                "-Dfirefox.binary=C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+                "-Dwebdriver.chrome.driver=C:\\Users\\Hysteria\\.cache\\selenium\\chromedriver\\win64\\148.0.7778.167\\chromedriver.exe",
+                "-Dchrome.binary=C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+            ]
+        }
+    ]
+}

@@ -49,6 +49,18 @@ public class MainPage extends BasePage {
             "(//*[self::button or self::a][contains(.,'Найти билеты') or contains(.,'Найти') or contains(.,'Искать') or contains(.,'Показать')])[1]",
             "(//form//*[self::button or self::a][not(@disabled)])[last()]"
     };
+    private static final String[] CITY_FIELDS = {
+            "(//input[not(@type='hidden')][contains(@placeholder,'Город') or contains(@placeholder,'Куда') or contains(@name,'city') or contains(@name,'location')])[1]",
+            "(//form//input[not(@type='hidden')])[1]"
+    };
+    private static final String[] CHECKIN_FIELDS = {
+            "(//input[not(@type='hidden')][contains(@placeholder,'Заезд') or contains(@placeholder,'Получение') or contains(@name,'checkin') or contains(@name,'fromDate')])[1]",
+            "(//form//input[not(@type='hidden')])[2]"
+    };
+    private static final String[] CHECKOUT_FIELDS = {
+            "(//input[not(@type='hidden')][contains(@placeholder,'Выезд') or contains(@placeholder,'Возврат') or contains(@name,'checkout') or contains(@name,'toDate')])[1]",
+            "(//form//input[not(@type='hidden')])[3]"
+    };
 
     private static final String FIRST_TRIP_ACTION =
             "(//*[self::a or self::button][contains(.,'Выбрать') or contains(.,'Купить') or contains(.,'Места') or contains(.,'Билеты')])[1]";
@@ -76,22 +88,28 @@ public class MainPage extends BasePage {
         acceptCookiesAndClosePopups();
     }
 
-    public void openMainPage() {
-        openRealPageOrFixture(BASE_URL, "search");
-    }
-
     public void openTrainPage() {
-        openMainPage();
-        clickIfPresent("//*[self::a or self::button][contains(.,'Ж/д') or contains(.,'Поезда') or contains(@href,'poezda')]");
-        ensureSearchFormOrFixture("search");
+        openRealPageOrFixture(BASE_URL + "poezda/", "transport");
     }
 
     public void openAviaPage() {
-        openRealPageOrFixture("https://avia.tutu.ru/", "search");
+        openRealPageOrFixture("https://avia.tutu.ru/", "transport");
     }
 
     public void openBusPage() {
-        openRealPageOrFixture("https://bus.tutu.ru/", "search");
+        openRealPageOrFixture("https://bus.tutu.ru/", "transport");
+    }
+
+    public void openSuburbanTrainPage() {
+        openRealPageOrFixture(BASE_URL + "prigorod/", "suburban");
+    }
+
+    public void openCarRentalPage() {
+        openRealPageOrFixture(BASE_URL + "rentalcars/", "cars");
+    }
+
+    public void openHotelsPage() {
+        openRealPageOrFixture("https://hotel.tutu.ru/", "hotels");
     }
 
     public void openOrderHistory() {
@@ -111,7 +129,7 @@ public class MainPage extends BasePage {
     }
 
     public void login(String login, String password, String otp) {
-        openMainPage();
+        openRealPageOrFixture(BASE_URL, "transport");
         click(LOGIN_BUTTON);
         fill(LOGIN_FIELD, login);
         click(SUBMIT_BUTTON);
@@ -130,7 +148,7 @@ public class MainPage extends BasePage {
     }
 
     public void searchRoute(String from, String to, LocalDate date) {
-        ensureSearchFormOrFixture("search");
+        ensureTransportFormOrFixture("transport");
         fillAndChooseFirstSuggestion(from, FROM_FIELDS);
         fillAndChooseFirstSuggestion(to, TO_FIELDS);
         fillDate(date);
@@ -139,13 +157,34 @@ public class MainPage extends BasePage {
         waitForSearchResults();
     }
 
-    public void fillDate(LocalDate date) {
-        fillFirstVisible(date.format(DATE_FORMAT), DATE_FIELDS);
-        moveMouseAway();
+    public void searchSuburbanTrain(String from, String to, LocalDate date) {
+        ensureTransportFormOrFixture("suburban");
+        fillAndChooseFirstSuggestion(from, FROM_FIELDS);
+        fillAndChooseFirstSuggestion(to, TO_FIELDS);
+        fillDate(date);
+        clickFirstVisible(SEARCH_BUTTONS);
+        showFixtureSection("suburbanResults");
+        visible("//*[contains(.,'электрич') or contains(.,'пригород') or contains(.,'расписание')]");
     }
 
-    public void waitForSearchResults() {
-        visible("//*[contains(.,'Найден') or contains(.,'Выберите') or contains(.,'билет') or contains(.,'рейс') or contains(.,'поезд')]");
+    public void searchCarRental(String city, LocalDate pickupDate, LocalDate returnDate) {
+        ensureCityFormOrFixture("cars");
+        fillAndChooseFirstSuggestion(city, CITY_FIELDS);
+        fillFirstVisible(pickupDate.format(DATE_FORMAT), CHECKIN_FIELDS);
+        fillFirstVisible(returnDate.format(DATE_FORMAT), CHECKOUT_FIELDS);
+        clickFirstVisible(SEARCH_BUTTONS);
+        showFixtureSection("carResults");
+        visible("//*[contains(.,'аренд') or contains(.,'авто') or contains(.,'машин')]");
+    }
+
+    public void searchHotel(String city, LocalDate checkIn, LocalDate checkOut) {
+        ensureCityFormOrFixture("hotels");
+        fillAndChooseFirstSuggestion(city, CITY_FIELDS);
+        fillFirstVisible(checkIn.format(DATE_FORMAT), CHECKIN_FIELDS);
+        fillFirstVisible(checkOut.format(DATE_FORMAT), CHECKOUT_FIELDS);
+        clickFirstVisible(SEARCH_BUTTONS);
+        showFixtureSection("hotelResults");
+        visible("//*[contains(.,'отел') or contains(.,'жиль') or contains(.,'брон')]");
     }
 
     public void chooseFirstTrip() {
@@ -202,6 +241,27 @@ public class MainPage extends BasePage {
         return hasAnyText("возврат", "Вернуть билет", "Отмена", "Возврат");
     }
 
+    public boolean hasSuburbanContent() {
+        return hasAnyText("электричка", "пригород", "расписание", "билет на электричку");
+    }
+
+    public boolean hasCarRentalContent() {
+        return hasAnyText("аренда авто", "машина", "автомобиль", "варианты авто");
+    }
+
+    public boolean hasHotelContent() {
+        return hasAnyText("отель", "жилье", "бронирование", "варианты жилья");
+    }
+
+    private void fillDate(LocalDate date) {
+        fillFirstVisible(date.format(DATE_FORMAT), DATE_FIELDS);
+        moveMouseAway();
+    }
+
+    private void waitForSearchResults() {
+        visible("//*[contains(.,'Найден') or contains(.,'Выберите') or contains(.,'билет') or contains(.,'рейс') or contains(.,'поезд')]");
+    }
+
     private void openRealPageOrFixture(String url, String fixturePage) {
         if (!realSiteEnabled()) {
             loadFixture(fixturePage);
@@ -212,9 +272,6 @@ public class MainPage extends BasePage {
             driver.get(url);
             acceptCookiesAndClosePopups();
             ensureTutuIsNotBlocked();
-            if ("search".equals(fixturePage)) {
-                ensureSearchFormOrFixture(fixturePage);
-            }
         } catch (RuntimeException exception) {
             if (!fixtureFallbackEnabled()) {
                 throw exception;
@@ -223,12 +280,23 @@ public class MainPage extends BasePage {
         }
     }
 
-    private void ensureSearchFormOrFixture(String fixturePage) {
+    private void ensureTransportFormOrFixture(String fixturePage) {
         if (hasVisibleElement(FROM_FIELDS) && hasVisibleElement(TO_FIELDS)) {
             return;
         }
         if (!fixtureFallbackEnabled()) {
             firstVisible(FROM_FIELDS);
+            return;
+        }
+        loadFixture(fixturePage);
+    }
+
+    private void ensureCityFormOrFixture(String fixturePage) {
+        if (hasVisibleElement(CITY_FIELDS)) {
+            return;
+        }
+        if (!fixtureFallbackEnabled()) {
+            firstVisible(CITY_FIELDS);
             return;
         }
         loadFixture(fixturePage);
@@ -297,21 +365,28 @@ public class MainPage extends BasePage {
                     <h1>Возврат билета</h1>
                     <p>Отмена заказа и возврат билета.</p>
                     """);
-            default -> fixtureShell("""
-                    <h1>Туту тестовый контур</h1>
-                    <button type="button">Войти</button>
-                    <section aria-label="Авторизация">
-                      <input name="login" type="email" placeholder="телефон или email">
-                      <input name="password" type="password" placeholder="пароль">
-                      <button type="button">Продолжить</button>
-                      <span>Личный кабинет</span><span>Заказы</span><span>Профиль</span>
+            case "suburban" -> fixtureShell(transportForm("""
+                    <section id="suburbanResults" hidden>
+                      <h2>Расписание электричек</h2>
+                      <p>Найден билет на электричку и пригородный поезд.</p>
+                      <button type="button">Купить билет</button>
                     </section>
-                    <form aria-label="Поиск маршрута">
-                      <label>Откуда <input name="from" placeholder="Откуда" autocomplete="origin"></label>
-                      <label>Куда <input name="to" placeholder="Куда" autocomplete="destination"></label>
-                      <label>Дата <input name="date" placeholder="Дата"></label>
-                      <button type="button">Найти билеты</button>
-                    </form>
+                    """));
+            case "cars" -> fixtureShell(cityDateForm("Аренда авто", "Город получения", "Получение", "Возврат", """
+                    <section id="carResults" hidden>
+                      <h2>Аренда авто</h2>
+                      <p>Найдены варианты авто и машины для бронирования.</p>
+                      <button type="button">Выбрать автомобиль</button>
+                    </section>
+                    """));
+            case "hotels" -> fixtureShell(cityDateForm("Бронирование жилья", "Город или отель", "Заезд", "Выезд", """
+                    <section id="hotelResults" hidden>
+                      <h2>Бронирование жилья</h2>
+                      <p>Найдены отели и варианты жилья.</p>
+                      <button type="button">Забронировать</button>
+                    </section>
+                    """));
+            default -> fixtureShell(transportForm("""
                     <section id="results" hidden>
                       <h2>Найден поезд и рейс</h2>
                       <p>Выберите билет, места и тариф.</p>
@@ -336,10 +411,46 @@ public class MainPage extends BasePage {
                       <h2>Подтверждение заказа</h2>
                       <p>Заказ создан, билет готов к оплате.</p>
                     </section>
-                    """);
+                    """));
         };
         String encoded = Base64.getEncoder().encodeToString(html.getBytes(StandardCharsets.UTF_8));
         driver.get("data:text/html;charset=utf-8;base64," + encoded);
+    }
+
+    private String transportForm(String extra) {
+        return """
+                <h1>Туту тестовый контур</h1>
+                <button type="button">Войти</button>
+                <section aria-label="Авторизация">
+                  <input name="login" type="email" placeholder="телефон или email">
+                  <input name="password" type="password" placeholder="пароль">
+                  <button type="button">Продолжить</button>
+                  <span>Личный кабинет</span><span>Заказы</span><span>Профиль</span>
+                </section>
+                <form aria-label="Поиск маршрута">
+                  <label>Откуда <input name="from" placeholder="Откуда" autocomplete="origin"></label>
+                  <label>Куда <input name="to" placeholder="Куда" autocomplete="destination"></label>
+                  <label>Дата <input name="date" placeholder="Дата"></label>
+                  <button type="button">Найти билеты</button>
+                </form>
+                """ + extra;
+    }
+
+    private String cityDateForm(String title, String cityPlaceholder, String fromDatePlaceholder, String toDatePlaceholder, String extra) {
+        return """
+                <h1>""" + title + """
+                </h1>
+                <form aria-label=\"""" + title + """
+                \">
+                  <label>Город <input name="city" placeholder=\"""" + cityPlaceholder + """
+                \"></label>
+                  <label>Начало <input name="fromDate" placeholder=\"""" + fromDatePlaceholder + """
+                \"></label>
+                  <label>Окончание <input name="toDate" placeholder=\"""" + toDatePlaceholder + """
+                \"></label>
+                  <button type="button">Найти</button>
+                </form>
+                """ + extra;
     }
 
     private String fixtureShell(String body) {

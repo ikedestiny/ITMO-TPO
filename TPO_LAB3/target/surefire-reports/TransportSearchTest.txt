@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: TutuUseCaseTest
+Test set: TransportSearchTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 105.7 s -- in TutuUseCaseTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 71.91 s -- in TransportSearchTest

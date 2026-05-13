@@ -102,14 +102,6 @@ public abstract class BasePage {
         throw lastException == null ? new TimeoutException("No XPath candidates were provided") : lastException;
     }
 
-    protected void fillAndChooseFirstSuggestion(String xpath, String text) {
-        fill(xpath, text);
-        String suggestion = "(//*[self::li or self::div or self::button]"
-                + "[contains(@class,'suggest') or contains(@class,'autocomplete') or @role='option' or contains(@data-ti,'suggest')]"
-                + "[not(contains(@style,'display: none'))])[1]";
-        clickIfPresent(suggestion);
-    }
-
     protected void fillAndChooseFirstSuggestion(String text, String... xpaths) {
         fillFirstVisible(text, xpaths);
         String suggestion = "(//*[self::li or self::div or self::button]"
@@ -129,7 +121,7 @@ public abstract class BasePage {
         if (bodyText.contains("Слишком много пересадок") || bodyText.toLowerCase().contains("выключите vpn")) {
             dumpPageDiagnostics("tutu-blocked");
             throw new IllegalStateException("tutu.ru returned its anti-bot page: \"Слишком много пересадок\". "
-                    + "The search form is not present in DOM; disable VPN/proxy or run the test from an allowed network.");
+                    + "The expected form is not present in DOM; disable VPN/proxy or run from an allowed network.");
         }
     }
 

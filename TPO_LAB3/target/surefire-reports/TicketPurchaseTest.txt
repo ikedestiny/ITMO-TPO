@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: TutuUseCaseTest
+Test set: TicketPurchaseTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 105.7 s -- in TutuUseCaseTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 49.25 s -- in TicketPurchaseTest

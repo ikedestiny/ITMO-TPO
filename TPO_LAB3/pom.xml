@@ -9,11 +9,18 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <browsers>chrome,firefox</browsers>
-        <headless>false</headless>
+        <browsers>edge</browsers>
+        <headless>true</headless>
+        <webdriver.manager>false</webdriver.manager>
+        <webdriver.edge.driver>C:\Users\Hysteria\Downloads\edgedriver_win64\msedgedriver.exe</webdriver.edge.driver>
+        <edge.binary>C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe</edge.binary>
+        <webdriver.chrome.driver>C:\Users\Hysteria\.cache\selenium\chromedriver\win64\148.0.7778.167\chromedriver.exe</webdriver.chrome.driver>
+        <chrome.binary>C:\Program Files\Google\Chrome\Application\chrome.exe</chrome.binary>
+        <webdriver.gecko.driver>C:\Users\Hysteria\Downloads\geckodriver-v0.36.0-win64\geckodriver.exe</webdriver.gecko.driver>
+        <firefox.binary>C:\Program Files\Mozilla Firefox\firefox.exe</firefox.binary>
     </properties>
 
     <dependencies>
@@ -36,4 +43,60 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <browsers>${browsers}</browsers>
+                        <headless>${headless}</headless>
+                        <webdriver.manager>${webdriver.manager}</webdriver.manager>
+                        <webdriver.edge.driver>${webdriver.edge.driver}</webdriver.edge.driver>
+                        <edge.binary>${edge.binary}</edge.binary>
+                        <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                        <chrome.binary>${chrome.binary}</chrome.binary>
+                        <webdriver.gecko.driver>${webdriver.gecko.driver}</webdriver.gecko.driver>
+                        <firefox.binary>${firefox.binary}</firefox.binary>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>edge</id>
+            <properties>
+                <browsers>edge</browsers>
+            </properties>
+        </profile>
+        <profile>
+            <id>chrome</id>
+            <properties>
+                <browsers>chrome</browsers>
+            </properties>
+        </profile>
+        <profile>
+            <id>firefox</id>
+            <properties>
+                <browsers>firefox</browsers>
+            </properties>
+        </profile>
+        <profile>
+            <id>firefox-chrome</id>
+            <properties>
+                <browsers>firefox,chrome</browsers>
+            </properties>
+        </profile>
+        <profile>
+            <id>edge-chrome</id>
+            <properties>
+                <browsers>edge,chrome</browsers>
+            </properties>
+        </profile>
+    </profiles>
 </project>
