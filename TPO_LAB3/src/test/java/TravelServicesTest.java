@@ -1,3 +1,5 @@
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -7,6 +9,8 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Дополнительные сервисы путешествий")
+@Epic("tutu.ru")
+@Feature("Дополнительные сервисы")
 class TravelServicesTest extends AbstractTutuWebDriverTest {
 
     @ParameterizedTest(name = "Аренда авто: {0}")

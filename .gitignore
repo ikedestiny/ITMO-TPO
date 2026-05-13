@@ -1,0 +1,62 @@
+# Build output for Maven/Java modules
+target/
+**/target/
+
+# Allure local installation, raw results, and generated reports
+.allure/
+**/.allure/
+allure-results/
+**/allure-results/
+allure-report/
+**/allure-report/
+
+# Selenium diagnostics generated on failures
+selenium-debug/
+**/selenium-debug/
+
+# Compiled Java artifacts and packaged binaries
+*.class
+*.jar
+*.war
+*.ear
+
+# Local browser drivers and downloaded archives
+drivers/
+**/drivers/
+*.zip
+*.tar.gz
+*.7z
+chromedriver.exe
+geckodriver.exe
+msedgedriver.exe
+
+# IDE and editor metadata
+.idea/
+.metals/
+.bloop/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/launch.json
+!**/.vscode/tasks.json
+*.iml
+.classpath
+.project
+.settings/
+**/.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+before_wait_page.html
+before_wait_screenshot.png
